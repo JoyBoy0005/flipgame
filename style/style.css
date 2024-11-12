@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0; /* Changed to 0 to avoid overflow issues */
+    padding: 50px; /* Added padding instead of margin for space */
+    box-sizing: border-box; /* Ensure padding is included in height/width */
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+    justify-content: center;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    display: none;
+}
+
+.card.flipped img {
+    display: block;
+}
+
+.card.matched {
+    background: #a0e4a8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+    background: #bbb;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.flipped {
+    background: #fff;
+}
+
+#score-board {
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: #2196f3;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-right: 15px;
+    text-align: center;
+}
+
+#winner-banner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+#restart-button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgb(41, 219, 103);
+    border: none; /* Added border none for better appearance */
+    border-radius: 4px; /* Added border radius for consistency */
+    transition: background-color 0.3s; /* Added transition for smooth hover effect */
+}
+
+#restart-button:hover {
+    background-color: rgb(35, 180, 85); /* Added hover effect */
+}
+
+h1 {
+    text-align: center;
+    animation: moveUpDown 3s infinite;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #343a40;
+    color: white;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    animation: slideInFromBottom 1s ease-in-out;
+}
+
+@keyframes moveUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+#rule-box {
+    width: 300px;
+    padding: 15px;
+    margin-right: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideIn 1s forwards, fadeOut 1s 5s forwards;
+}
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; transform: translateX(100px); }
+}

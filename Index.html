@@ -1,48 +1,66 @@
-<!DOCTYPE html>
+<!-- 
+@author Prince Patel
+-->
+ <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment 4 - Svg Game</title>
-    <!-- @Author - Princekumar Patel -->
-    <link rel="stylesheet" href="style/style.css">
+    <title>Memory Game</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="a4.js"></script>
 </head>
-<body>
-    <h1>Memory Game</h1>
-    <div id="box">
-        <div id="rule-box">
-            <!-- write down the notes that instruct how to play -->
-            <h2>Rules</h2>
-            <ul>
-                <li>You have only 3 chances</li>
-                <li>Click to flip card</li>
-                <li>"Restart" button requires double-click</li>
+
+<body class="bg-gray-100 font-sans text-gray-900 flex justify-center items-center min-h-screen overflow-hidden">
+
+    <div id="box" class="flex flex-col lg:flex-row justify-between items-start lg:w-[80%] w-[90%] max-w-6xl bg-white p-6 rounded-lg shadow-lg">
+        <!-- Rules Section -->
+        <div id="rule-box" class="w-full lg:w-1/3 mb-6 lg:mb-0 p-6 bg-white rounded-lg shadow-md text-center">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">Rules</h2>
+            <p class="text-lg mb-4">Match all pairs before running out of chances!</p>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700 text-sm">
+                <li>You have 3 attempts to win.</li>
+                <li>Flip the cards to find matching pairs.</li>
+                <li>you will have only 1 hint </li>
+                <li>Complete the game as quickly as possible.</li>
             </ul>
         </div>
-        <!-- transparent svg screen  box-->
-        <svg id="game-box" width="600" height="600">
-            <rect x="10" y="10" width="580" height="580" fill="none" stroke="black" stroke-width="4" rx="15" ry="15">
-                <animate attributeName="stroke" values="black; red; blue; black" dur="5s" repeatCount="indefinite"/>
-            </rect>
-            <foreignObject x="20" y="20" width="560" height="500">
-                <div xmlns="http://www.w3.org/1999/xhtml" id="game-content">
-                    <div id="winner-banner" style="display: none;">Congratulations, You Win!</div>
-                    <div id="score-board">
-                        <h2>Score: <span id="score">0</span></h2>
-                    </div>
-                    <div id="game-board"></div>
-                </div>
-            </foreignObject>
-            <foreignObject x="250" y="540" width="100" height="40">
-                <div xmlns="http://www.w3.org/1999/xhtml">
-                    <button id="restart-button">Restart</button>
-                </div>
-            </foreignObject>
-        </svg>
+
+        <!-- Game Area -->
+        <div id="game-area" class="w-full lg:w-2/3 flex flex-col items-center justify-start">
+            <div id="score-board" class="font-semibold text-white bg-blue-500 py-2 px-6 mb-4 rounded-lg text-xl w-full text-center">
+                Score: <span id="score" class="text-green-500">0</span>
+            </div>
+            <div id="game-board" class="grid grid-cols-4 gap-4 mb-6 lg:max-w-[600px] w-full">
+                <!-- Game cards will be inserted here dynamically -->
+            </div>
+
+            <button id="restart-button" class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg transition duration-300 text-sm">
+                Restart
+            </button>
+            <button id="hint-button" class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg text-2xl flex items-center justify-center">
+                💡
+            </button>
+            
+            <div id="winner-banner" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white py-3 px-6 rounded-lg text-lg">
+                Congratulations, You Win!
+            </div>
+            <div id="game-over-banner" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white py-4 px-8 rounded-lg text-center shadow-lg z-10">
+                <p class="text-xl font-bold">Game Over!</p>
+                <button id="restart-game-over" class="bg-white text-red-600 font-semibold mt-4 py-2 px-4 rounded-lg hover:bg-gray-100">
+                    Restart
+                </button>
+            </div>
+            
+        </div>
     </div>
-    <footer>
-        <p>&copy; 2024 Prince Patel. | JavaScript | <a href="#Client-side">Client-side Web Programming</a> | <a href="#Greet">Thank You</a></p>
+
+    <footer class="text-sm text-center text-white bg-gray-800 py-2 w-full absolute bottom-0">
+        <!-- @Author - Princekumar Patel -->
+        &copy; 2024 Memory Game | Client-side Web Programming
     </footer>
-    <script src="a4.js"></script>
 </body>
 </html>

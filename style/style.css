@@ -1,23 +1,6 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    margin: 0; /* Changed to 0 to avoid overflow issues */
-    padding: 50px; /* Added padding instead of margin for space */
-    box-sizing: border-box; /* Ensure padding is included in height/width */
-}
-
-#game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-gap: 10px;
-    justify-content: center;
-}
-
+/**
+ * @author Prince Patel
+ */
 .card {
     width: 100px;
     height: 100px;
@@ -54,89 +37,88 @@ body {
 .card.flipped {
     background: #fff;
 }
-
-#score-board {
-    font-size: 1.5em;
-    font-weight: bold;
-    background-color: #2196f3;
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    display: inline-block;
-    margin-right: 15px;
-    text-align: center;
+#hint-button {
+    font-size: 1.5rem; 
+    transition: transform 0.2s ease;
 }
 
+#hint-button:hover {
+    transform: scale(1.1); 
+    background-color: #fbbf24;
+}
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
 #winner-banner {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #4CAF50;
     color: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 20px 40px;
+    border-radius: 12px;
     font-size: 24px;
     font-weight: bold;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    animation: slideIn 0.5s ease-out, bounce 1s infinite alternate;
+}
+
+/* Animation for sliding in */
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -70%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+#game-over-banner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f44336; 
+    color: white;
+    padding: 20px 40px;
+    border-radius: 12px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     z-index: 10;
 }
-
-#restart-button {
-    margin: 10px;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: rgb(41, 219, 103);
-    border: none; /* Added border none for better appearance */
-    border-radius: 4px; /* Added border radius for consistency */
-    transition: background-color 0.3s; /* Added transition for smooth hover effect */
-}
-
-#restart-button:hover {
-    background-color: rgb(35, 180, 85); /* Added hover effect */
-}
-
-h1 {
-    text-align: center;
-    animation: moveUpDown 3s infinite;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #343a40;
-    color: white;
-    position: relative;
-    width: 100%;
-    bottom: 0;
-    animation: slideInFromBottom 1s ease-in-out;
-}
-
-@keyframes moveUpDown {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0); }
-}
-
-#rule-box {
-    width: 300px;
-    padding: 15px;
-    margin-right: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+#game-over-banner button {
+    margin-top: 10px;
+    background-color: white;
+    color: #f44336;
+    padding: 10px 20px;
+    border: none;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateX(-100px);
-    animation: slideIn 1s forwards, fadeOut 1s 5s forwards;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-
-@keyframes slideIn {
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; transform: translateX(100px); }
+#game-over-banner button:hover {
+    background-color: #eee;
 }

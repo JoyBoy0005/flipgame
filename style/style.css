@@ -1,21 +1,43 @@
 /**
  * @author Prince Patel
  */
-.card {
-    width: 100px;
-    height: 100px;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+#box {
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: #ddd;
-    cursor: pointer;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); 
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #e5e7eb;
     border-radius: 8px;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .card img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 80%;
+    max-height: 80%;
     display: none;
 }
 
@@ -23,102 +45,36 @@
     display: block;
 }
 
-.card.matched {
-    background: #a0e4a8;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
 .card:hover {
-    background: #bbb;
     transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-.card.flipped {
-    background: #fff;
-}
-#hint-button {
-    font-size: 1.5rem; 
-    transition: transform 0.2s ease;
-}
-
-#hint-button:hover {
-    transform: scale(1.1); 
-    background-color: #fbbf24;
-}
-.opacity-50 {
-    opacity: 0.5;
-}
-
-.cursor-not-allowed {
-    cursor: not-allowed;
-}
-#winner-banner {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px 40px;
-    border-radius: 12px;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    animation: slideIn 0.5s ease-out, bounce 1s infinite alternate;
-}
-
-/* Animation for sliding in */
-@keyframes slideIn {
-    from {
-        transform: translate(-50%, -70%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-
-@keyframes bounce {
-    from {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-}
+#winner-banner,
 #game-over-banner {
-    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f44336; 
-    color: white;
-    padding: 20px 40px;
-    border-radius: 12px;
-    font-size: 24px;
-    font-weight: bold;
     text-align: center;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     z-index: 10;
 }
-#game-over-banner button {
-    margin-top: 10px;
-    background-color: white;
-    color: #f44336;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+
+#footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
-#game-over-banner button:hover {
-    background-color: #eee;
+
+@media (min-width: 768px) {
+    #game-board {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+        width: 100px;
+        height: 100px;
+    }
 }
+
+
